@@ -6,4 +6,8 @@ export default class BasePage {
   constructor(page: Page) {
     this.page = page;
   }
+
+  public getPage(): Page {
+    return this.page;
+  }
 }

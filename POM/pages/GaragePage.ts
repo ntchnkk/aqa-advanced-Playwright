@@ -1,5 +1,6 @@
 import { expect, Locator } from "@playwright/test";
 import BasePage from "../Pages/BasePage";
+import AddCarForm from "../forms/AddCarForm";
 
 export default class GaragePage extends BasePage {
   public readonly garagePageHeader: Locator = this.page.locator("//h1", {
@@ -12,18 +13,7 @@ export default class GaragePage extends BasePage {
   private readonly addNewCarButton: Locator = this.page.locator(
     '//button[contains(@class, "btn-primary")]'
   );
-  private readonly brandDropdown: Locator = this.page.locator(
-    '//select[@id="addCarBrand"]'
-  );
-  private readonly modelDropdown: Locator = this.page.locator(
-    '//select[@id="addCarModel"]'
-  );
-  private readonly mileageField: Locator = this.page.locator(
-    '//input[@id="addCarMileage"]'
-  );
-  private readonly submitAddingCarButton: Locator = this.page.locator(
-    '//app-add-car-modal//button[contains(@class, "btn-primary")]'
-  );
+
   private readonly allAddedCarNames: Locator = this.page.locator(
     '//p[contains(@class,"car_name")]'
   );
@@ -32,21 +22,19 @@ export default class GaragePage extends BasePage {
     "//a[contains(@class,'btn-link') and contains(@class,'text-danger')]"
   );
 
+  public readonly lastCarName: Locator = this.page.locator(".car_name").first();
+
+  public readonly editCarButton: Locator = this.page.locator(
+    '//span[contains(@class, "icon-edit")]'
+  );
+
   async open(): Promise<void> {
     await this.page.goto("/panel/garage");
   }
 
-  async addNewCar(
-    brand: string,
-    model: string,
-    mileage: string
-  ): Promise<void> {
+  async openAddCarForm(): Promise<AddCarForm> {
     await this.addNewCarButton.click();
-    await this.brandDropdown.selectOption(brand);
-    await this.modelDropdown.selectOption(model);
-    await this.mileageField.fill(mileage);
-    await this.submitAddingCarButton.click();
-    await this.page.waitForTimeout(500);
+    return new AddCarForm(this.getPage());
   }
 
   async verifyLastAddedCarName(expectedName: string): Promise<void> {
@@ -56,5 +44,9 @@ export default class GaragePage extends BasePage {
   async verifyGaragePageIsOpen(): Promise<void> {
     await expect(this.garagePageHeader).toBeVisible();
     await expect(this.userProfileDropdown).toBeVisible();
+  }
+
+  async openEditCarForm(): Promise<void> {
+    await this.editCarButton.first().click();
   }
 }
