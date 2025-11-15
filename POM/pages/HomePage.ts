@@ -6,11 +6,19 @@ export default class HomePage extends BasePage {
     "//button[contains(@class, 'hero-descriptor_btn') and contains(@class, 'btn-primary')]"
   );
 
+  private readonly signInButton: Locator = this.page.locator(
+    '//button[contains(@class, "header_signin")]'
+  );
+
   async open(): Promise<void> {
     await this.page.goto("/");
   }
 
   async clickSignUpButton(): Promise<void> {
     await this.signUpButton.click();
+  }
+
+  async openSignInForm(): Promise<void> {
+    await this.signInButton.click();
   }
 }
