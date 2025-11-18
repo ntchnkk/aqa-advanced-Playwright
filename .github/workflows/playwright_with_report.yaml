@@ -1,12 +1,15 @@
 name: Playwright Tests + Deploy Report
 on:
   workflow_dispatch:
-
   push:
     branches: [main, HW_31.1]
-
   pull_request:
     branches: [main, HW_31.1]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 env:
   HTTP_CREDENTIALS_USERNAME: ${{ secrets.HTTP_CREDENTIALS_USERNAME }}
@@ -36,7 +39,9 @@ jobs:
           retention-days: 30
 
   deploy:
+    name: Deploy to GitHub Pages
     needs: test
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -46,13 +51,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: playwright-report
-          path: ./playwright-report
-
-      - name: Upload Pages artifact
+          path: playwright-report
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./playwright-report
-
+          path: playwright-report
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
