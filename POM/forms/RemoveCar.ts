@@ -1,5 +1,5 @@
 import { Locator } from "@playwright/test";
-import BasePage from "../Pages/BasePage";
+import BasePage from "../pages/BasePage";
 
 export default class RemoveCar extends BasePage {
   private readonly removeButton: Locator = this.page.locator(

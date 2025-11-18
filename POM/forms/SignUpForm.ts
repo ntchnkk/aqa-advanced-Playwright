@@ -1,5 +1,5 @@
 import { expect, Locator } from "@playwright/test";
-import BasePage from "../Pages/BasePage";
+import BasePage from "../pages/BasePage";
 
 export default class SignUpForm extends BasePage {
   public readonly signUpModal: Locator =

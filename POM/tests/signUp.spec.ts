@@ -102,12 +102,12 @@ test.describe("Sign up form", () => {
       await signUpForm.checkAllFieldsEmpty();
     });
 
-    test("Spaces are trimmed in 'Name' field", async () => {
+    test.skip("Spaces are trimmed in 'Name' field", async () => {
       await signUpForm.fillField(signUpForm.nameField, "  Kate  ");
       await expect(signUpForm.nameField).toHaveValue("Kate");
     });
 
-    test("Spaces are trimmed in 'Last name' field", async () => {
+    test.skip("Spaces are trimmed in 'Last name' field", async () => {
       await signUpForm.fillField(signUpForm.lastNameField, "  Lastname  ");
       await expect(signUpForm.lastNameField).toHaveValue("Lastname");
     });

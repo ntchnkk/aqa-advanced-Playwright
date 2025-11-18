@@ -1,5 +1,5 @@
 import { Locator } from "@playwright/test";
-import BasePage from "../Pages/BasePage";
+import BasePage from "../pages/BasePage";
 
 export default class AddCarForm extends BasePage {
   private readonly brandDropdown: Locator = this.page.locator(
