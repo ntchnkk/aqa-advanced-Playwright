@@ -11,6 +11,8 @@ on:
 env:
   HTTP_CREDENTIALS_USERNAME: ${{ secrets.HTTP_CREDENTIALS_USERNAME }}
   HTTP_CREDENTIALS_PASSWORD: ${{ secrets.HTTP_CREDENTIALS_PASSWORD }}
+  BASE_URL: ${{ secrets.BASE_URL }}
+
 
 jobs:
   test:
