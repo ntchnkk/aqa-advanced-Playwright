@@ -1,5 +1,5 @@
 import { Locator } from "@playwright/test";
-import BasePage from "../Pages/BasePage";
+import BasePage from "../pages/BasePage";
 
 export default class SignInForm extends BasePage {
   public readonly emailField: Locator = this.page.locator(

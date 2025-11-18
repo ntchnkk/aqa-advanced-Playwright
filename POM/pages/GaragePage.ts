@@ -1,5 +1,5 @@
 import { expect, Locator } from "@playwright/test";
-import BasePage from "../Pages/BasePage";
+import BasePage from "../pages/BasePage";
 import AddCarForm from "../forms/AddCarForm";
 
 export default class GaragePage extends BasePage {
