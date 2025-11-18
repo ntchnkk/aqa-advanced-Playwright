@@ -1,12 +1,12 @@
 name: Playwright Tests
 on:
+  workflow_dispatch:
+  
   push:
     branches: [main, HW_31.1]
 
   pull_request:
     branches: [main, HW_31.1]
-
-  workflow_dispatch:
 
 env:
   HTTP_CREDENTIALS_USERNAME: ${{ secrets.HTTP_CREDENTIALS_USERNAME }}
